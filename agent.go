@@ -12,19 +12,27 @@ type Agent struct {
 	Environments []string `json:"environments"`
 	UUID         string   `json:"uuid"`
 	AgentName    string   `json:"agent_name"`
-	FreeSpace    string   `json:"free_space"`
 	Resources    []string `json:"resources"`
 	Sandbox      string   `json:"sandbox"`
 	Status       string   `json:"status"`
 	BuildLocator string   `json:"build_locator"`
 	IPAddress    string   `json:"ip_address"`
+	Enabled      bool     `json:"enabled"`
+}
+
+type Embedded struct {
+	Agents []Agent `json:"agents"`
+}
+
+type AgentList struct {
+	Embedded Embedded `json:"_embedded"`
 }
 
 type Message struct {
 	Message string `json:"message"`
 }
 
-func (s *AgentService) GetAll() ([]Agent, *Response, error) {
+func (s *AgentService) GetAll() (*AgentList, *Response, error) {
 	u := "agents"
 
 	req, err := s.client.NewRequest("GET", u, nil)
@@ -36,7 +44,7 @@ func (s *AgentService) GetAll() ([]Agent, *Response, error) {
 
 	req.Header.Set("Accept", "application/vnd.go.cd.v1+json")
 
-	agents := new([]Agent)
+	agents := new(*AgentList)
 	response, err := s.client.Do(req, agents)
 	if err != nil {
 		fmt.Println("ERROR 2")
