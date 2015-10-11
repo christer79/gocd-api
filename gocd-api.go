@@ -101,15 +101,16 @@ func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 		if w, ok := v.(io.Writer); ok {
 			io.Copy(w, resp.Body)
 		} else {
-			buf := new(bytes.Buffer)
-			buf.ReadFrom(resp.Body)
-			s := buf.String()
-
-			fmt.Println("BODY: " + s)
-
+			/*
+									buf := new(bytes.Buffer)
+									buf.ReadFrom(resp.Body)
+									s := buf.String()
+				  				fmt.Println("BODY: " + s)
+			*/
 			err = json.NewDecoder(resp.Body).Decode(v)
 			if err != nil {
 				fmt.Println("Error on dECODE" + err.Error())
+				fmt.Println(err)
 			}
 		}
 	}
