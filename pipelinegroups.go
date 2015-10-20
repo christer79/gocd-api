@@ -5,7 +5,7 @@ type PipelineGroupService struct {
 }
 
 func (s *PipelineGroupService) Get() ([]PipelineGroup, *Response, error) {
-	u := "config/pipeline_groups"
+	u := "api/config/pipeline_groups"
 
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {

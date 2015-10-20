@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	defaultBaseURL = "http://localhost:8153/go/api/"
+	defaultBaseURL = "http://localhost:8153/go/"
 )
 
 type Client struct {

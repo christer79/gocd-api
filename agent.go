@@ -7,7 +7,7 @@ type AgentService struct {
 }
 
 func (s *AgentService) GetAll() (*AgentList, *Response, error) {
-	u := "agents"
+	u := "api/agents"
 
 	req, err := s.client.NewRequest("GET", u, nil)
 
@@ -29,7 +29,7 @@ func (s *AgentService) GetAll() (*AgentList, *Response, error) {
 }
 
 func (s *AgentService) Get(UUID string) (Agent, *Response, error) {
-	u := "agents/" + UUID
+	u := "api/agents/" + UUID
 
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
@@ -51,7 +51,7 @@ func (s *AgentService) Get(UUID string) (Agent, *Response, error) {
 }
 
 func (s *AgentService) Delete(UUID string) (Message, *Response, error) {
-	u := "agents/" + UUID
+	u := "api/agents/" + UUID
 
 	req, err := s.client.NewRequest("DELETE", u, nil)
 

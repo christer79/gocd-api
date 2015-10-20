@@ -7,7 +7,7 @@ type UserService struct {
 }
 
 func (s *UserService) GetAll() ([]User, *Response, error) {
-	u := "users"
+	u := "api/users"
 
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
