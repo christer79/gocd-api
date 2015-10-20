@@ -6,32 +6,6 @@ type AgentService struct {
 	client *Client
 }
 
-//Agent represents a Agent index as in the response when listing agents
-type Agent struct {
-	Os           string   `json:"operating_system"`
-	Environments []string `json:"environments"`
-	UUID         string   `json:"uuid"`
-	AgentName    string   `json:"agent_name"`
-	Resources    []string `json:"resources"`
-	Sandbox      string   `json:"sandbox"`
-	Status       string   `json:"status"`
-	BuildLocator string   `json:"build_locator"`
-	IPAddress    string   `json:"ip_address"`
-	Enabled      bool     `json:"enabled"`
-}
-
-type Embedded struct {
-	Agents []Agent `json:"agents"`
-}
-
-type AgentList struct {
-	Embedded Embedded `json:"_embedded"`
-}
-
-type Message struct {
-	Message string `json:"message"`
-}
-
 func (s *AgentService) GetAll() (*AgentList, *Response, error) {
 	u := "agents"
 

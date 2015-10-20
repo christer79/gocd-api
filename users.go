@@ -6,15 +6,6 @@ type UserService struct {
 	client *Client
 }
 
-type User struct {
-	LoginName      string   `json:"login_name"`
-	DisplayName    string   `json:"DisplayName"`
-	Enabled        string   `json:"enabled"`
-	Email          string   `json:"email"`
-	EmailMe        bool     `json:"email_me"`
-	CheckinAliases []string `json:"checkin_aliases"`
-}
-
 func (s *UserService) GetAll() ([]User, *Response, error) {
 	u := "users"
 
