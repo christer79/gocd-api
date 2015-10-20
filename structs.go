@@ -1,5 +1,15 @@
 package gocdapi
 
+type Coordinate struct {
+	PipelineGroup string
+	PipelineName  string
+	PipelineCount int
+	StageName     string
+	StageCount    int
+	JobName       string
+	FilePath      string
+}
+
 type MaterialModification struct {
 	EmailAddress     string `json:"email_address"`
 	Id               int    `json:"id"`
@@ -22,6 +32,7 @@ type BuildCause struct {
 	TriggerForced  bool   `json:"trigger_forced"`
 	TriggerMessage string `json:"trigger_message"`
 }
+
 type PipelineInstance struct {
 	BuildCause          BuildCause `json:"build_cause"`
 	Name                string     `json:"name"`
@@ -90,14 +101,6 @@ type Artifact struct {
 	Files []File `json:"files"`
 }
 
-type Coordinate struct {
-	PipelineName  string
-	PipelineCount int
-	StageName     string
-	StageCount    int
-	JobName       string
-	FilePath      string
-}
 type Job struct {
 	Name          string `json:"name"`
 	Result        string `json:"result"`
