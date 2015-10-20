@@ -21,6 +21,7 @@ type Client struct {
 	Users         *UserService
 	PipelineGroup *PipelineGroupService
 	Artifacts     *ArtifactService
+	Pipelines     *PipelineService
 }
 
 // Response is a GitHub API response.  This wraps the standard http.Response
@@ -44,6 +45,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Artifacts = &ArtifactService{client: c}
 	c.Users = &UserService{client: c}
 	c.PipelineGroup = &PipelineGroupService{client: c}
+	c.Pipelines = &PipelineService{client: c}
 
 	return c
 }
