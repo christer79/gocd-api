@@ -14,8 +14,11 @@ const (
 )
 
 type Client struct {
-	client  *http.Client
-	BaseURL *url.URL
+	client   *http.Client
+	BaseURL  *url.URL
+	Key      *string
+	UserName *string
+	Password *string
 
 	Agents        *AgentService
 	Users         *UserService
@@ -76,7 +79,12 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	if err != nil {
 		return nil, err
 	}
-	req.SetBasicAuth("christer.eriksson", "p4rqBE24")
+
+	if c.Key == nil {
+		if c.UserName != nil && c.Password != nil {
+			req.SetBasicAuth(*c.UserName, *c.Password)
+		}
+	}
 
 	return req, nil
 }
